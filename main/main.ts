@@ -23,16 +23,37 @@ const ffprobePath = require("ffprobe-static").path.replace(
 );
 ffmpeg.setFfmpegPath(ffmpegPath);
 ffmpeg.setFfprobePath(ffprobePath);
-ffmpeg("E:\\code\\test.mp4")
-  .output("E:\\code\\dd.mp4") // 指定输出文件路径
 
+// ffmpeg("E:\\code\\test.mp4").save("E:\\code\\output.mp4");
+
+ffmpeg("E:\\code\\test.mp4")
+  .complexFilter([
+    // 使用 complexFilter 来添加水印
+    {
+      filter: "overlay",
+      options: "100:100",
+    },
+  ])
+  .input("E:\\code\\shuiyin.png") // 水印文件作为第二个输入
+  .outputOptions("-shortest") // 确保视频和水印长度一致
+  .save("E:\\code\\out.mp4")
   .on("end", () => {
-    console.log("Processing finished !");
+    console.log("水印已添加成功！");
   })
   .on("error", (err) => {
-    console.error("An error occurred: " + err.message);
-  })
-  .run();
+    console.error("添加水印时出错:", err);
+  });
+
+// ffmpeg("E:\\code\\test.mp4")
+//   .output("E:\\code\\dd.mp4") // 指定输出文件路径
+
+//   .on("end", () => {
+//     console.log("Processing finished !");
+//   })
+//   .on("error", (err) => {
+//     console.error("An error occurred: " + err.message);
+//   })
+//   .run();
 
 /** ffmpeg相关 end*/
 
