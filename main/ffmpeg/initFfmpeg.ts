@@ -11,22 +11,33 @@ export const initFfmpeg = () => {
   ffmpeg.setFfprobePath(ffprobePaths);
 };
 
-export const addWater = () => {
+const filters = [
+  {
+    filter: "drawtext",
+    options: {
+      text: "Your Watermark Text",
+      fontsize: 54,
+      fontname: "FreeSans",
+      x: "60",
+      y: "60",
+      shadowcolor: "#000000",
+      shadowx: "2",
+      shadowy: "2",
+    },
+  },
+];
+
+export const addWater = (text) => {
   ffmpeg("E:\\code\\test.mp4")
-    .complexFilter([
-      // 使用 complexFilter 来添加水印
-      {
-        filter: "overlay",
-        options: "100:100",
-      },
-    ])
-    .input("E:\\code\\shuiyin.png") // 水印文件作为第二个输入
-    .outputOptions("-shortest") // 确保视频和水印长度一致
-    .save("E:\\code\\out.mp4")
+    .videoFilters(
+      `drawtext=fontfile=simhei.ttf:text=${text}:x=20:y=10:fontsize=30:fontcolor=yellow:shadowy=2`
+    )
+
     .on("end", () => {
-      console.log("水印已添加成功！");
+      console.log("success");
     })
     .on("error", (err) => {
-      console.error("添加水印时出错:", err);
-    });
+      console.error("error:", err);
+    })
+    .save("E:\\code\\out.mp4");
 };

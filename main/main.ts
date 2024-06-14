@@ -20,4 +20,4 @@ app.on("window-all-closed", () => {
 
 initMainIpc();
 initFfmpeg();
-addWater();
+addWater("哈哈哈");
