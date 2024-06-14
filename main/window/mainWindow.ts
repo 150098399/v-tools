@@ -7,8 +7,7 @@ export const createMiniWindow = (BrowserWindow) => {
     width: 800,
     height: 800,
     title: "牢大",
-    frame: false,
-    icon: join(__dirname, "../public/icon.ico"),
+        icon: join(__dirname, "../public/icon.ico"),
     webPreferences: {
       preload: join(__dirname, "./preload.js"), // 引入打包后的js文件
     },
