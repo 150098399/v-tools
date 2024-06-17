@@ -20,4 +20,4 @@ app.on("window-all-closed", () => {
 
 initMainIpc();
 initFfmpeg();
-addWater("哈哈哈");
+addWater("小李出品");

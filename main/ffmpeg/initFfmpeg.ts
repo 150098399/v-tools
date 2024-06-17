@@ -30,7 +30,7 @@ const filters = [
 export const addWater = (text) => {
   ffmpeg("E:\\code\\test.mp4")
     .videoFilters(
-      `drawtext=fontfile=simhei.ttf:text=${text}:x=20:y=10:fontsize=30:fontcolor=yellow:shadowy=2`
+      `drawtext=fontfile=simhei.ttf:text=${text}:x=20:y=10:fontsize=30:fontcolor=red:shadowy=1`
     )
 
     .on("end", () => {
