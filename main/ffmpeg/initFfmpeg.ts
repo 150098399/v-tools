@@ -11,22 +11,6 @@ export const initFfmpeg = () => {
   ffmpeg.setFfprobePath(ffprobePaths);
 };
 
-const filters = [
-  {
-    filter: "drawtext",
-    options: {
-      text: "Your Watermark Text",
-      fontsize: 54,
-      fontname: "FreeSans",
-      x: "60",
-      y: "60",
-      shadowcolor: "#000000",
-      shadowx: "2",
-      shadowy: "2",
-    },
-  },
-];
-
 export const addWater = (text) => {
   ffmpeg("E:\\code\\test.mp4")
     .videoFilters(
