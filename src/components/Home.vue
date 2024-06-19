@@ -8,7 +8,7 @@
             active-text-color="#ffd04b"
             background-color="#545c64"
             class="el-menu-vertical-demo"
-            default-active="2"
+            default-active="1"
             text-color="#fff"
           >
             <el-menu-item index="1" @click="toWatermark">
@@ -38,9 +38,14 @@ import {
   ElMenuItem,
   ElHeader,
 } from "element-plus";
+import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+
+onMounted(() => {
+  router.push("/watermark");
+});
 
 const toWatermark = () => {
   router.push("/watermark");
