@@ -84,7 +84,7 @@ const toAudioExtraction = () => {
 
 .el-menu {
   height: 100%;
-  border-right: 2px solid #1a6840;
+  border-right: 2px solid rgb(172, 225, 175);
   background-color: #e3e3e7;
 }
 
@@ -94,7 +94,7 @@ const toAudioExtraction = () => {
 }
 
 .el-menu-item.is-active {
-  color: #1a6840;
+  color: rgb(228, 108, 10);
 }
 
 .el-menu-item:hover {
@@ -104,7 +104,7 @@ const toAudioExtraction = () => {
 .el-header {
   display: flex;
   align-items: center;
-  background-color: #1a6840;
+  background-color: rgb(172, 225, 175);
   height: 40px;
 }
 </style>

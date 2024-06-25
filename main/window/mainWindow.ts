@@ -9,7 +9,7 @@ export const createMiniWindow = (BrowserWindow) => {
     frame: false,
     titleBarStyle: "hidden",
     titleBarOverlay: {
-      color: "#1a6840",
+      color: "rgb(172, 225, 175)",
       symbolColor: "#fff",
       height: 40,
     },
@@ -22,14 +22,6 @@ export const createMiniWindow = (BrowserWindow) => {
   };
 
   const win = new BrowserWindow(config);
-
-  // const menu = Menu.buildFromTemplate(menuTemplate);
-  // menu.getMenuItemById("selectFile")!.click = () =>
-  //   win.webContents.send("menu:selectFile", "dsd");
-  // menu.getMenuItemById("saveFile")!.click = () =>
-  //   win.webContents.send("menu:saveFile");
-  // menu.getMenuItemById("about")!.click = () => createAboutDialog();
-  // Menu.setApplicationMenu(menu);
 
   if (process.env.VITE_DEV_SERVER_URL) {
     // 开发环境

@@ -1,4 +1,5 @@
 import { ipcMain, dialog } from "electron";
+import { readFile } from "../ffmpeg/initFfmpeg";
 
 export const initMainIpc = () => {
   ipcMain.on("set-title", (event, args) => {
@@ -6,6 +7,7 @@ export const initMainIpc = () => {
   });
 
   ipcMain.handle("dialog:selectFile", handleSelectFile);
+  ipcMain.handle("video:readFile", handleReadFile);
 };
 
 const fileType = "video";
@@ -27,4 +29,9 @@ const handleSelectFile = async () => {
   if (!canceled) {
     return filePaths[0];
   }
+};
+
+const handleReadFile = async (_event: any, filePath: string) => {
+  const info = await readFile(filePath);
+  return info;
 };
