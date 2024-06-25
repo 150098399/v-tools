@@ -104,6 +104,7 @@ const handleReadFile = async (filePath: string) => {
   align-items: center;
   justify-content: center;
   height: 20%;
+  width: 66%;
   border: 1px dashed #ccc;
   cursor: pointer;
   color: #5f5e5e;
@@ -116,18 +117,22 @@ const handleReadFile = async (filePath: string) => {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   padding: 20px;
+  width: 60%;
 }
 .header {
   margin-bottom: 15px;
 }
 .info {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
 .info-item {
   margin-right: 20px;
   margin-bottom: 10px;
+  width: 150px;
+  overflow: hidden;
 }
 </style>
