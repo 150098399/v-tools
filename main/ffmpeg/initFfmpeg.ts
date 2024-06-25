@@ -33,7 +33,7 @@ export const readFile = (filePath) => {
       (err: any, data: { format: any; streams: any }) => {
         if (err) return err;
         const { format, streams } = data;
-        const { format_name, duration, size, bit_rate } = format;
+        const { format_name, duration, size } = format;
 
         let video_bit_rate = "0"; // video比特率
         let audio_bit_rate = "0"; // audio比特率
@@ -41,6 +41,8 @@ export const readFile = (filePath) => {
         let height = 0;
         let codec = ""; // 解码器名称
         let channels = 1; // 声道
+
+        const format_size = (size / 1024 / 1024).toFixed(2) + "M";
 
         const video = streams.find((item) => item.codec_type === "video");
         const audio = streams.find((item) => item.codec_type === "audio");
@@ -62,7 +64,7 @@ export const readFile = (filePath) => {
           fileName: parse(filePath).name,
           format_name,
           duration,
-          size,
+          size: format_size,
           width,
           height,
           video_bit_rate,

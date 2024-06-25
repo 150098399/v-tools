@@ -1,12 +1,16 @@
 <template>
   <div>
     <div class="video-wrap">
-      <span
+      <div
         v-if="!showVideo"
         @click="handleSelect"
         @drop.stop.prevent="handleDrop"
-        >拖拽或点击上传视频</span
+        @dragenter.prevent
+        @dragover.prevent
+        class="upload-wrap"
       >
+        拖拽或点击上传视频
+      </div>
       <video
         v-else
         controls
@@ -53,7 +57,11 @@ const handleDrop = async (event: DragEvent) => {
   event.preventDefault();
   event.stopPropagation();
 
-  // await handleReadFile(filePath);
+  const filePath = event.dataTransfer?.files[0].path;
+
+  await handleReadFile(filePath);
+  videoSorce.value = `file://${filePath}`;
+  showVideo.value = true;
 };
 
 const allowFormats = [
@@ -82,12 +90,12 @@ let video: any = ref({
 });
 
 const handleReadFile = async (filePath: string) => {
-  if (!filePath) {
-    return;
-  }
+  if (!filePath) return;
+
+  // E:\sea.mp4  取文件后缀名校验文件格式
   const index = filePath.lastIndexOf(".");
-  const ext = filePath.substring(index + 1);
-  if (!allowFormats.includes(ext)) {
+  const file_extension = filePath.substring(index + 1);
+  if (!allowFormats.includes(file_extension)) {
     return alert("文件格式不支持");
   }
 
@@ -103,8 +111,8 @@ const handleReadFile = async (filePath: string) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20%;
-  width: 66%;
+  width: 64%;
+  height: 36%;
   border: 1px dashed #ccc;
   cursor: pointer;
   color: #5f5e5e;
