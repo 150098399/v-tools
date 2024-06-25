@@ -1,7 +1,7 @@
 const ffmpeg = require("fluent-ffmpeg");
 const ffmpegPath = require("ffmpeg-static");
 const ffprobePath = require("ffprobe-static");
-import path from "node:path";
+import { parse } from "path";
 export const initFfmpeg = () => {
   const ffmpegPaths = ffmpegPath?.replace("app.asar", "app.asar.unpacked");
   const ffprobePaths = ffprobePath.path.replace(
@@ -59,7 +59,7 @@ export const readFile = (filePath) => {
         }
 
         resolve({
-          fileName: path.parse(filePath).name,
+          fileName: parse(filePath).name,
           format_name,
           duration,
           size,

@@ -1,11 +1,19 @@
 <template>
   <div>
-    <div
-      class="video-wrap"
-      @click="handleSelect"
-      @drop.stop.prevent="handleDrop"
-    >
-      拖拽或点击上传视频
+    <div class="video-wrap">
+      <span
+        v-if="!showVideo"
+        @click="handleSelect"
+        @drop.stop.prevent="handleDrop"
+        >拖拽或点击上传视频</span
+      >
+      <video
+        v-else
+        controls
+        autoplay
+        :src="videoSorce"
+        style="width: 100%; height: auto"
+      ></video>
     </div>
     <div class="origin-info">
       <div class="header">原视频参数</div>
@@ -26,6 +34,9 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+
+const showVideo = ref(false);
+const videoSorce = ref("");
 const handleSelect = async () => {
   const filePath: any = await window.electron.ipcRenderer.invoke(
     "dialog:selectFile",
@@ -33,6 +44,9 @@ const handleSelect = async () => {
   );
 
   await handleReadFile(filePath);
+  videoSorce.value = `file://${filePath}`;
+
+  showVideo.value = true;
 };
 
 const handleDrop = async (event: DragEvent) => {
@@ -89,7 +103,7 @@ const handleReadFile = async (filePath: string) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50%;
+  height: 20%;
   border: 1px dashed #ccc;
   cursor: pointer;
   color: #5f5e5e;
@@ -97,7 +111,6 @@ const handleReadFile = async (filePath: string) => {
 }
 
 .origin-info {
-  height: 280px;
   background-color: #fbf9f1;
   margin-top: 20px;
   border-radius: 10px;
@@ -109,10 +122,12 @@ const handleReadFile = async (filePath: string) => {
 }
 .info {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .info-item {
   margin-right: 20px;
+  margin-bottom: 10px;
 }
 </style>

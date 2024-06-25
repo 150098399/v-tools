@@ -18,6 +18,7 @@ export const createMiniWindow = (BrowserWindow) => {
     icon: join(__dirname, "../public/icon.ico"),
     webPreferences: {
       preload: join(__dirname, "./preload.js"), // 引入打包后的js文件
+      webSecurity: false, // 配置允许跨域，解决无法加载本地磁盘文件的问题
     },
   };
 
