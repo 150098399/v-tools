@@ -45,7 +45,6 @@ const handleSelect = async () => {
     "dialog:selectFile",
     []
   );
-  debugger;
   // 选中文件后显示视频，取消不显示
   const isSelected = await handleReadFile(filePath);
   if (isSelected) {
