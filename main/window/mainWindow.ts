@@ -1,6 +1,6 @@
 import { join } from "path";
-import { Menu, dialog } from "electron";
-import { menuTemplate } from "../config";
+import { dialog } from "electron";
+
 import os from "node:os";
 export const createMiniWindow = (BrowserWindow) => {
   const config = {

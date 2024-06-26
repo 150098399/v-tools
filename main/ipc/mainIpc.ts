@@ -29,6 +29,7 @@ const handleSelectFile = async () => {
   if (!canceled) {
     return filePaths[0];
   }
+  return false;
 };
 
 const handleReadFile = async (_event: any, filePath: string) => {

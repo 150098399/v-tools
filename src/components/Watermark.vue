@@ -14,7 +14,6 @@
       <video
         v-else
         controls
-        autoplay
         :src="videoSorce"
         style="width: 100%; height: auto"
       ></video>
@@ -47,10 +46,12 @@ const handleSelect = async () => {
     []
   );
 
-  await handleReadFile(filePath);
-  videoSorce.value = `file://${filePath}`;
-
-  showVideo.value = true;
+  // 选中文件后显示视频，取消不显示
+  const isSelected = await handleReadFile(filePath);
+  if (isSelected) {
+    videoSorce.value = `file://${filePath}`;
+    showVideo.value = true;
+  }
 };
 
 const handleDrop = async (event: DragEvent) => {
@@ -90,7 +91,7 @@ let video: any = ref({
 });
 
 const handleReadFile = async (filePath: string) => {
-  if (!filePath) return;
+  if (!filePath) return false;
 
   // E:\sea.mp4  取文件后缀名校验文件格式
   const index = filePath.lastIndexOf(".");
