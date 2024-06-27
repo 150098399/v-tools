@@ -4,7 +4,7 @@ import { dialog } from "electron";
 import os from "node:os";
 export const createMiniWindow = (BrowserWindow) => {
   const config = {
-    width: 800,
+    width: 1000,
     height: 800,
     frame: false,
     titleBarStyle: "hidden",
