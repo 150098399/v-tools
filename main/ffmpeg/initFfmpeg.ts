@@ -28,6 +28,7 @@ export const addWater = (text) => {
 };
 
 export const readFile = (filePath) => {
+  
   return new Promise((resolve) => {
     ffmpeg(filePath).ffprobe(
       (err: any, data: { format: any; streams: any }) => {

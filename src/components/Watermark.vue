@@ -15,21 +15,74 @@
         v-else
         controls
         :src="videoSorce"
-        style="width: 100%; height: auto"
+        style="height: 100%; width: 100%"
       ></video>
     </div>
     <div class="origin-info">
       <div class="header">原视频参数</div>
       <div class="info">
-        <div class="info-item">文件名： {{ video.fileName }}</div>
-        <div class="info-item">格式：{{ video.format_name }}</div>
-        <div class="info-item">宽高： {{ video.width }}×{{ video.height }}</div>
-        <div class="info-item">时长： {{ video.duration.toFixed(2) }}</div>
-        <div class="info-item">大小：{{ video.size }}</div>
-        <div class="info-item">视频比特率：{{ video.video_bit_rate }}</div>
-        <div class="info-item">音频比特率：{{ video.audio_bit_rate }}</div>
-        <div class="info-item">编码器：{{ video.codec }}</div>
-        <div class="info-item">声道：{{ video.channels }}</div>
+        <el-form :model="video" label-position="right">
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="文件名">
+                <span>{{ video.fileName }}</span>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="格式">
+                <span>{{ video.format_name }}</span>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="宽高">
+                <span>{{ video.width }}×{{ video.height }}</span>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="时长">
+                <span>{{ video.duration }}</span>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="大小">
+                <span>{{ video.size }}</span>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="视频比特率">
+                <span>{{ video.video_bit_rate }}</span>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="音频比特率">
+                <span>{{ video.audio_bit_rate }}</span>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="编码器">
+                <span>{{ video.codec }}</span>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="声道">
+                <span>{{ video.channels }}</span>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12"></el-col>
+          </el-row>
+        </el-form>
       </div>
     </div>
   </div>
@@ -83,8 +136,8 @@ let video: any = ref({
   height: 0,
   size: 0,
   duration: 0,
-  videoBitrate: "",
-  audioBitrate: "",
+  video_bit_rate: "",
+  audio_bit_rate: "",
   codec: "",
   channels: 0,
 });
@@ -103,6 +156,8 @@ const handleReadFile = async (filePath: string) => {
     "video:readFile",
     filePath
   );
+  console.log(video.value);
+
   return true;
 };
 </script>
@@ -112,36 +167,40 @@ const handleReadFile = async (filePath: string) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64%;
-  height: 36%;
-  border: 1px dashed #ccc;
+  height: 30vw;
+  width: 50vw;
   cursor: pointer;
   color: #5f5e5e;
   font-size: 20px;
 }
 
+.upload-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border: 1px dashed #ccc;
+}
+
 .origin-info {
+  box-sizing: border-box;
   background-color: #fbf9f1;
   margin-top: 20px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   padding: 20px;
-  width: 60%;
+  width: 50vw;
 }
+
 .header {
   margin-bottom: 15px;
-}
-.info {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
 }
 
 .info-item {
   margin-right: 20px;
   margin-bottom: 10px;
-  width: 150px;
+  width: 160px;
   overflow: hidden;
 }
 </style>
