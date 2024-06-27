@@ -11,11 +11,14 @@
       拖拽或点击上传视频
     </div>
     <video
-      v-else
+      v-if="showVideo"
       controls
       :src="videoSorce"
       style="height: 100%; width: 100%; border-radius: 10px"
     ></video>
+    <div class="tool" v-if="showVideo">
+      <i-ep-monitor class="icon" @click="handleSelect" />
+    </div>
   </div>
 </template>
 
@@ -110,6 +113,8 @@ const emits = defineEmits(["videoInfo"]);
 
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+
+  position: relative;
 }
 
 .upload-wrap {
@@ -120,5 +125,27 @@ const emits = defineEmits(["videoInfo"]);
   width: 100%;
   border: 1px dashed #ccc;
   border-radius: 10px;
+}
+
+.tool {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  /* z-index: 999; */
+}
+
+.icon {
+  font-size: 16px;
+  color: rgb(136, 136, 136);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px;
+}
+
+.icon:hover {
+  color: #fff;
+  background-color: rgba(0, 123, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
 </style>
