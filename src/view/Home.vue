@@ -30,14 +30,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-  ElContainer,
-  ElAside,
-  ElMain,
-  ElMenu,
-  ElMenuItem,
-  ElHeader,
-} from "element-plus";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 
