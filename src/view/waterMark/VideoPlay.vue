@@ -44,6 +44,7 @@ const handleDrop = async (event: DragEvent) => {
   event.preventDefault();
   event.stopPropagation();
 
+  // @ts-ignore
   const filePath = event.dataTransfer?.files[0].path!;
 
   await handleReadFile(filePath);

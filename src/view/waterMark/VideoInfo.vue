@@ -84,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   video: {
     type: Object,
     rquired: true,
