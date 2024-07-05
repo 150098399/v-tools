@@ -1,9 +1,12 @@
-# Vue 3 + TypeScript + Vite
+<h1 align="center">vTools</h1>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<p align="center">vTools是一款使用Electron + Vue3 + TypeScript + FFMPEG 打造的一款桌面端视频处理工具，兼容windows和mac系统，该项目于2024年6月启动，目前正在开发迭代中。</p>
 
-## Recommended Setup
+## 迭代功能
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
-
-- Use [vue-tsc](https://github.com/vuejs/language-tools/tree/master/packages/tsc) for performing the same type checking from the command line, or for generating d.ts files for SFCs.
+- 视频加水印
+- 视频去水印
+- 视频剪切
+- 视频合并
+- 视频消音
+- ...
